@@ -1,10 +1,10 @@
 # 🖥️ Podłączanie komputerów do domeny Active Directory
 
-Ten poradnik pokazuje, jak dołączyć komputery do domeny Active Directory zarówno przez GUI
+Ten poradnik pokazuje, jak dołączyć komputery do domeny Active Directory
 
 ## 📍 Wymagania wstępne
 
-- Komputer musi mieć połączenie z siecią i widzieć kontroler domeny (np. `DC01.bytecorp.local`)
+- Komputer musi mieć połączenie z siecią i widzieć kontroler domeny
 - DNS na komputerze **musi wskazywać na kontroler domeny**
 - Użytkownik musi mieć uprawnienia do dodawania komputerów do domeny (np. konto administratora domeny)
 
@@ -22,4 +22,6 @@ Ten poradnik pokazuje, jak dołączyć komputery do domeny Active Directory zar�
 7. Po komunikacie o powodzeniu — **zrestartuj komputer**
 
 
+- ## Widzmy w Active Directory że nasza stacja została dodana
+![image](https://github.com/user-attachments/assets/df65333d-7060-4a3c-87cb-d9989b8d7275)
 
