@@ -1,66 +1,60 @@
-# 💾 Konfiguracja Windows Server Backup
+# 💾 Automatyzacja kopii zapasowych w Windows Server
 
-W tym dokumencie pokazuję, jak zainstalować oraz skonfigurować narzędzie **Windows Server Backup** na Windows Server 2019/2022, w celu wykonywania automatycznych kopii zapasowych.
+W ramach tego projektu skonfigurowałem **Windows Server Backup** na systemie **Windows Server 2019**, aby realizować automatyczne, codzienne kopie zapasowe danych. Celem było zapewnienie odporności serwera na utratę danych.
 
-## 🛠️ 1. Instalacja funkcji Windows Server Backup
+---
 
-### 📍 Krok 1: Otwórz Server Manager
+## 🛠️ Co zrobiłem:
+### ✅ Instalacja narzędzia Windows Server Backup
 
-1. Kliknij **Start** i wybierz **Server Manager**
-2. Przejdź do zakładki **Manage** → **Add Roles and Features**
+Zainstalowałem rolę **Windows Server Backup** przez Server Manager.
 
-### 🧩 Krok 2: Kreator dodawania ról i funkcji
+![Instalacja WSB](https://github.com/user-attachments/assets/77f4bd57-d8d5-4ba6-b9a4-7a861b7b6429)
 
-1. Wybierz typ instalacji: `Role-based or feature-based installation`
-2. Wybierz lokalny serwer z listy
-3. Przejdź dalej do ekranu **Features**
+---
 
-### ✅ Krok 3: Dodaj funkcję Windows Server Backup
+### ✅ Konfiguracja harmonogramu kopii zapasowej
 
-- Zaznacz opcję **Windows Server Backup**
-- Kliknij **Next**, a następnie **Install**
+Uruchomiłem narzędzie WSB i utworzyłem harmonogram backupów typu **Full Server** – codziennie o godzinie 2:00.  
+Skonfigurowałem lokalizację docelową backupu na osobnej partycji  
+(Nie miałem dostępu do zewnętrznego dysku).
 
-![image](https://github.com/user-attachments/assets/310411e7-f741-4e62-9fa0-2747faef4326)
+![Harmonogram Backupu](https://github.com/user-attachments/assets/8292f430-12b2-41bd-bea5-6d379445b884)
 
-## 📂 2. Uruchamianie Windows Server Backup
+---
 
-Po instalacji:
+### ✅ Weryfikacja działania backupu
 
-- Otwórz **Start** → wpisz `Windows Server Backup` → uruchom aplikację
-![image](https://github.com/user-attachments/assets/2777812a-e99b-416f-bb34-dd6936d72147)
+Wykonałem testowy backup ręczny i potwierdziłem poprawność działania przez **Event Viewer** oraz komunikaty zakończenia zadania.
 
-## 📅 3. Tworzenie harmonogramu backupu
-
-1. W głównym oknie kliknij **Local Backup** → **Backup Schedule...**
-2. Wybierz opcję `Full server` lub `Custom` (jeśli chcesz wybrać konkretne dyski/katalogi)
-3. Określ częstotliwość (np. codziennie o 2:00 w nocy)
-4. Wybierz lokalizację do przechowywania kopii:
-   - Może to być inny dysk (zalecane)
-   - Może to być ten sam dysk ale inna partycja — *tylko do celów edukacyjnych*
-   - Może to być dzielony folder — Tylko jeśli nie ma innych opcji 
-![image](https://github.com/user-attachments/assets/9aba5b7e-443d-47fa-a940-184ebc8203cd)
-
-## 🔄 4. Testowanie backupu
-
-Po zapisaniu harmonogramu możesz wykonać backup ręcznie:
-
-- Kliknij **Backup Once...** → wykonaj kopię i sprawdź, czy backup się zakończył bez błędów
-![image](https://github.com/user-attachments/assets/1e477b96-bd7e-4b26-9643-5d7d33f6a50b)
+![Wykonany Backup](https://github.com/user-attachments/assets/dcd9f4b0-66bb-4efb-b19c-871252bbd342)
+![Logi w Event Viewer](https://github.com/user-attachments/assets/2cfedb21-a36a-414d-b71f-4a5d791f3e0b)
 
 
-Sprawdź też logi w:
-- Event Viewer > Applications and Services Logs > Microsoft > Windows > Backup
+---
 
-![image](https://github.com/user-attachments/assets/5b21a701-cd4d-42ee-b1af-409ff65c6553)
+Sprawdziłem również działanie **przywracania danych z kopii zapasowej**, weryfikując, czy odzyskiwanie przebiega prawidłowo.
+
+---
+
+## 🔍 Czego się nauczyłem:
+
+- Praktyczna konfiguracja harmonogramów backupu z poziomu GUI.
+- Znaczenie przechowywania danych na osobnym nośniku i ryzyka związanego z backupem na tej samej partycji.
+- Obsługa i analiza logów backupu w Event Viewerze.
+- Jak wygląda odzyskiwanie danych w Windows Server.
+
+---
+
+## 💡 Dobre praktyki
+
+- Backup na osobnym dysku dla zwiększenia bezpieczeństwa.
+- Regularne testy backupu i procesu odzyskiwania.
+- W planie – automatyczne alerty w razie niepowodzenia backupu (zadanie + e-mail).
+
+---
 
 
 
-
-
-## 💡 5. Wskazówki i dobre praktyki
-
-- Przechowuj backup na **oddzielnym dysku** (lub innym hoście)
-- Ustaw alerty o nieudanym backupie (można skonfigurować zadanie + e-mail)
-- Regularnie testuj **przywracanie** danych, nie tylko ich zapisywanie
 
 
