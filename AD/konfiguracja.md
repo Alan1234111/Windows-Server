@@ -1,4 +1,4 @@
-# 🧩 Konfiguracja Active Directory na Windows Server
+# 🧩 Konfiguracja Active Directory, tworzenie OU, użytkowników i grup na Windows Server
 
 W ramach tego projektu zainstalowałem i skonfigurowałem **Active Directory Domain Services (AD DS)** na systemie **Windows Server 2019**.  
 Celem było utworzenie lokalnego środowiska domenowego na potrzeby testów i nauki zarządzania użytkownikami oraz usługami katalogowymi.
@@ -38,10 +38,50 @@ Po ponownym uruchomieniu systemu:
 
 ![image](https://github.com/user-attachments/assets/eb598d5c-218d-4d76-a969-f7f24394f874)
 
+---
+
+### ✅ Tworzenie jednostki organizacyjnej (OU)
+
+Utworzyłem jednostkę organizacyjną o nazwie **helpdesk**.
+
+![Tworzenie OU](https://github.com/user-attachments/assets/8c1e6948-854e-4020-87e3-73a33da809b3)
+
+---
+
+### ✅ Tworzenie grup użytkowników
+
+W ramach OU **helpdesk** utworzyłem trzy grupy bezpieczeństwa:
+
+- `l1`
+- `l2`
+- `l3`
+
+![image](https://github.com/user-attachments/assets/18f6a285-8bd1-4da4-b5d7-93237d5ddb59)
+
+---
+
+### ✅ Tworzenie użytkowników i przypisanie do grup
+
+Utworzyłem użytkownika:
+
+- **Imię i nazwisko**: Alan Pason
+- **Logon name**: `l1_alan`
+
+- Przypisałem go do grupy `l1`
+- Przetestowałem logowanie na stacji roboczej jako użytkownik `l1_alan`
+
+![image](https://github.com/user-attachments/assets/c30273f1-8555-4a63-bc3e-9e26adc0171f)
+![image](https://github.com/user-attachments/assets/58e172be-980f-4fe1-aff2-cb3a3a9d3aa4)
+![image](https://github.com/user-attachments/assets/6f7af19e-e7a6-4283-a9b9-950fbc1f2fe6)
+
+---
+
 ## 🔍 Czego się nauczyłem
 
-- Praktyczna instalacja i konfiguracja AD DS w środowisku Windows Server
-- Rola kontrolera domeny w zarządzaniu środowiskiem sieciowym
-- Tworzenie i konfigurowanie domeny od podstaw
-- Weryfikacja działania usługi i zarządzanie nią przez wbudowane narzędzia Microsoft
+- Praktyczna instalacja i konfiguracja Active Directory Domain Services
+- Rola kontrolera domeny w środowisku sieciowym
+- Tworzenie struktury domenowej od podstaw
+- Organizacja OU, grup oraz użytkowników
+- Testowanie logowania i poprawności konfiguracji
+- Wykorzystanie narzędzi graficznych systemu Windows Server do zarządzania AD
 
