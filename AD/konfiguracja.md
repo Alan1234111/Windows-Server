@@ -68,13 +68,29 @@ Utworzyłem użytkownika:
 - **Logon name**: `l1_alan`
 
 - Przypisałem go do grupy `l1`
-- Przetestowałem logowanie na stacji roboczej jako użytkownik `l1_alan`
 
 ![image](https://github.com/user-attachments/assets/c30273f1-8555-4a63-bc3e-9e26adc0171f)
-![image](https://github.com/user-attachments/assets/58e172be-980f-4fe1-aff2-cb3a3a9d3aa4)
-![image](https://github.com/user-attachments/assets/6f7af19e-e7a6-4283-a9b9-950fbc1f2fe6)
 
 ---
+
+### ✅ Podłączenie stacji roboczej do domeny
+
+Podłączyłem komputer z systemem Windows do domeny realcompany.local:
+- Wprowadziłem nazwę domeny podczas zmiany ustawień systemowych
+- Użyłem danych konta alan (posiadającego uprawnienia administratora domeny) domeny do autoryzacji
+- Po restarcie stacja robocza stała się częścią domeny
+- Zweryfikowałem obecność komputera w konsoli Active Directory Users and Computers
+
+  ![image](https://github.com/user-attachments/assets/ef47ebaa-eeeb-465c-963d-79e56a4e304c)
+
+- ## Widzmy w Active Directory że nasza stacja została dodana
+![image](https://github.com/user-attachments/assets/df65333d-7060-4a3c-87cb-d9989b8d7275)
+
+- ## Przetestowałem logowanie na stacji roboczej jako użytkownik `l1_alan`
+![image](https://github.com/user-attachments/assets/6f7af19e-e7a6-4283-a9b9-950fbc1f2fe6)
+
+
+
 
 ## 🔍 Czego się nauczyłem
 
@@ -83,5 +99,5 @@ Utworzyłem użytkownika:
 - Tworzenie struktury domenowej od podstaw
 - Organizacja OU, grup oraz użytkowników
 - Testowanie logowania i poprawności konfiguracji
+- Podłączanie stacji roboczej do domeny.
 - Wykorzystanie narzędzi graficznych systemu Windows Server do zarządzania AD
-
