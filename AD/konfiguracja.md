@@ -1,55 +1,47 @@
-# 🧩 Konfiguracja Active Directory
+# 🧩 Konfiguracja Active Directory na Windows Server
 
-W tym przewodniku pokażę, jak zainstalować i skonfigurować **Active Directory Domain Services** na Windows Server 2019/2022
-
----
-
-## 🖥️ 1. Instalacja AD DS przez GUI (Server Manager)
-
-### 📍 Krok 1: Otwórz Server Manager
-
-- Kliknij **Start** → **Server Manager**
-- Przejdź do: **Manage** → **Add Roles and Features**
-
-### ⚙️ Krok 2: Kreator ról i funkcji
-
-1. Wybierz `Role-based or feature-based installation`
-2. Wybierz swój serwer z listy
-3. Na liście ról zaznacz: ✅ **Active Directory Domain Services**
-
-> Pojawi się okno z dodatkowymi funkcjami – kliknij **Add Features**
-
-4. Kliknij **Next** aż do końca → **Install**
-
-![image](https://github.com/user-attachments/assets/54bf5c0e-605c-452e-b3c6-214e5c2b3ecc)
+W ramach tego projektu zainstalowałem i skonfigurowałem **Active Directory Domain Services (AD DS)** na systemie **Windows Server 2019**.  
+Celem było utworzenie lokalnego środowiska domenowego na potrzeby testów i nauki zarządzania użytkownikami oraz usługami katalogowymi.
 
 ---
 
-## 🧱 2. Promocja serwera do kontrolera domeny
+## 🛠️ Co zrobiłem
 
-Po instalacji roli AD pojawi się żółty trójkąt ⚠️ w Server Manager → kliknij **Promote this server to a domain controller**
+### ✅ Instalacja roli AD DS przez Server Manager
 
-### 🔧 Wybierz opcję:
-- ✅ `Add a new forest`
+Zainstalowałem rolę **Active Directory Domain Services** za pomocą kreatora ról i funkcji w Server Managerze.
+
+![Instalacja AD DS](https://github.com/user-attachments/assets/54bf5c0e-605c-452e-b3c6-214e5c2b3ecc)
+
+---
+
+### ✅ Promocja serwera do kontrolera domeny
+
+Po zakończeniu instalacji uruchomiłem kreator promocji i utworzyłem nową strukturę domenową:
+
+- Wybrałem opcję `Add a new forest`
 - Nazwa domeny: `realcompany.local`
+- Ustawiłem hasło DSRM (Directory Services Restore Mode)
+- Pozostawiłem domyślną nazwę NetBIOS
 
-![image](https://github.com/user-attachments/assets/374790fe-a7dc-4f5f-aea1-0c62e24a47a4)
-
-
-### Ustawienia:
-- Hasło Directory Services Restore Mode (DSRM)
-- Zostaw domyślne NetBIOS name
-- Kliknij **Next** do końca → **Install**
-
-🔁 Serwer zrestartuje się automatycznie.
+![Promocja Serwera do kontrolera domeny](https://github.com/user-attachments/assets/374790fe-a7dc-4f5f-aea1-0c62e24a47a4)
 
 ---
 
-## ✅ 3. Weryfikacja działania AD
+### ✅ Weryfikacja działania
 
-Po ponownym uruchomieniu:
-- Otwórz **Server Manager** → **Tools** → **Active Directory Users and Computers**
-- Powinieneś zobaczyć strukturę domeny `realcompany.local`
+Po ponownym uruchomieniu systemu:
+
+- Zalogowałem się jako administrator domeny
+- Otworzyłem konsolę: **Active Directory Users and Computers**
+- Zweryfikowałem, że struktura domeny `realcompany.local` została poprawnie utworzona i działa
 
 ![image](https://github.com/user-attachments/assets/eb598d5c-218d-4d76-a969-f7f24394f874)
+
+## 🔍 Czego się nauczyłem
+
+- Praktyczna instalacja i konfiguracja AD DS w środowisku Windows Server
+- Rola kontrolera domeny w zarządzaniu środowiskiem sieciowym
+- Tworzenie i konfigurowanie domeny od podstaw
+- Weryfikacja działania usługi i zarządzanie nią przez wbudowane narzędzia Microsoft
 
