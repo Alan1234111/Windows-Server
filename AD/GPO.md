@@ -1,43 +1,75 @@
 # 🧩 Stworzenie Zasad Grupy (GPO)
 
 W ramach tego projektu skonfigurowałem zasady grupy (Group Policy Objects – GPO) w środowisku domenowym opartym na Windows Server 2019.
-Celem było poznanie praktycznych możliwości zarządzania konfiguracją stacji roboczych i użytkowników w domenie za pomocą zasad GPO.
+Celem było poznanie praktycznych możliwości centralnego zarządzania środowiskiem użytkowników i komputerów w sieci oraz zróżnicowanie uprawnień według poziomu dostępu (L1, L2, L3).
 
 ---
 
 ## 🛠️ Co zrobiłem
 
+### ✅ Struktura grup zróżnicowanych pod względem uprawnień
+
+Utworzyłem trzy grupy użytkowników w ramach domeny, każdej przypisałem odpowiedni zestaw zasad zgodnie z regułą **Least Privilege**:
+
+W jednostce organizacyjnej **helpdesk**:
+
+ - L1 (najniższe uprawnienia) – środowisko maksymalnie ograniczone, skupione na bezpieczeństwie
+ - L2 (średnie uprawnienia) – dostęp do podstawowych narzędzi administracyjnych
+ - L3 (najwyższe uprawnienia) – użytkownicy techniczni z dostępem do zaawansowanych funkcji
+
+---
+
+### ✅ GPO dla grupy L1
+
+ - Blokada Edytora Rejestru (regedit)
+ - Blokada wierszu poleceń (cmd)
+ - Blokada Panelu Sterowania
+ - Blokada Windows Installer
+ - Blokada Logowania Użytkownika Gościa
+
+![Registry Block Workstation](https://github.com/user-attachments/assets/f4260a59-6146-44fa-b656-b244fbca3a23)
+
+---
+
+### ✅ GPO dla grupy L2
+
+Grupa L2 dziedziczy wszystkie ograniczenia z grupy L1, dodatkowo uzyskuje dostęp do:
+
+-  Restartowania wybranych usług (np. Print Spooler)
+-  Resetowania haseł użytkowników
+
+![RDP ](https://github.com/user-attachments/assets/f42184a4-2f4d-408a-ad39-093f2fd9bfd7)
+
+---
+
+### ✅ GPO dla grupy L3
+
+Grupa L3 bez większości ograniczeń, z dodatkowymi przywilejami:
+
+-  Zarządzanie dziennikiem zabezpieczeń (Security Log)
+-  Restartowanie serwera
+-  Dostęp do zdalnego łączenia się z serwerem (RDP)
 
 
-![Registry](https://github.com/user-attachments/assets/6124ea1d-166d-4e09-9178-cf167db8324d)
+RDP użytkownika który należy do Grupy L2:
 
-![CMD](https://github.com/user-attachments/assets/77e732c5-401f-4235-b188-7120a4ce4bd9)
+  ![RDP_L2](https://github.com/user-attachments/assets/a4f7d889-5b59-405b-b622-dce149f50d0e)
 
-![Control Panel](https://github.com/user-attachments/assets/74efcd2d-cb1a-44f3-9eb4-6b751716d78c)
+RDP użytkownika który należy do Grupy L3:
 
+![RDP_L3](https://github.com/user-attachments/assets/4f45de68-4633-4e90-b99d-2650028b01f4)  
 
-![image](https://github.com/user-attachments/assets/f82cea4d-aa3c-4bd1-aff6-16d8ce1baba6)
-![image](https://github.com/user-attachments/assets/f42184a4-2f4d-408a-ad39-093f2fd9bfd7)
-![image](https://github.com/user-attachments/assets/b05d3302-6812-4961-9c67-cdfd8699f52b)
-![image](https://github.com/user-attachments/assets/690db98a-d49c-4f73-a12c-cb7c48083be1)
-![image](https://github.com/user-attachments/assets/1e88b156-34c2-43f3-b123-0f25f289b38d)
+---
 
-L2
+### ✅ Zdjęcie GPO
 
-![image](https://github.com/user-attachments/assets/ac08df6c-13d9-4a13-bae8-bc549801f9e0)
-![image](https://github.com/user-attachments/assets/60ac9988-588a-46f6-b72c-947ab1bed3f6)
-
-![image](https://github.com/user-attachments/assets/9d46896b-2eac-4543-a37d-18e80f0c13d5)
-![image](https://github.com/user-attachments/assets/1a698eda-f0d1-4362-bbf9-deaf36c597cc)
-
-Print Spooler
-
-Windows Management Instrumentation
-
-Windows Update
-
-![image](https://github.com/user-attachments/assets/0ecca6ff-ef15-4893-9eea-b018fff612b0)
+![GPO](https://github.com/user-attachments/assets/ff54722b-93ee-42e5-bd79-f633a75962d5)
 
 
+## 🔍 Czego się nauczyłem
 
-
+- Praktyczna konfiguracja GPO dla różnych poziomów uprawnień
+- Dziedziczenie i filtrowanie zasad GPO według grup
+- Działanie zasady **Least Privilege** w praktyce
+- Wpływ zasad grupy na zachowanie systemu operacyjnego
+- Testowanie zmian GPO na stacjach roboczych w środowisku domenowym
