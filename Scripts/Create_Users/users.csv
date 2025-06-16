@@ -1,0 +1,12 @@
+Firstname,Lastname,OU,Groups
+Katie,Green,"helpdesk,DC=realcompany,DC=local","l1_helpdesk"
+Joe,Hoe,"soc,DC=realcompany,DC=local","l1_soc"
+Joe,Blow,"soc,DC=realcompany,DC=local","l2_soc"
+George,Hanes,"helpdesk,DC=realcompany,DC=local","l1_helpdesk;l2_helpdesk"
+Bobby,Fischer,"soc,DC=realcompany,DC=local","l3_soc"
+Barack,Obama,"helpdesk,DC=realcompany,DC=local","l2_helpdesk"
+Anne,Bertram,"helpdesk,DC=realcompany,DC=local","l3_helpdesk"
+Robert,Dinero,"soc,DC=realcompany,DC=local","l1_soc"
+Karol,Hughes,"soc,DC=realcompany,DC=local","l2_soc"
+Karol,Marks,"helpdesk,DC=realcompany,DC=local","l1_helpdesk"
+Stephen,King,"soc,DC=realcompany,DC=local","l1_soc"
