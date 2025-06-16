@@ -4,7 +4,6 @@ $PASSWORD_FOR_USERS = "Password1"
 $csvusers = Import-Csv -Path "$pathToUsers\Users.csv"
 $password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
 $allAdUsers = Get-ADUser -Filter *
-
 ##
 
 foreach($csvuser in $csvusers) {
@@ -16,23 +15,17 @@ foreach($csvuser in $csvusers) {
 
      ## User Already Exists ##
      Write-Output "User $($csvuser.FirstName), $($csvuser.LastName) already exists"
-
-
+     
      # Adding to Groups 
      foreach($group in $groups) {
         Add-ADGroupMember -Identity $group -Members $username
         Write-Host "User $username added to group: $group" 
       }
-
-
+    
    } else {
     $ou = $csvuser.OU
-    
     Write-Host "Creating user: $($csvuser.FirstName)"
-
-
     try {
-    
     # Creating User
     New-ADUser -AccountPassword $password `
                -GivenName $csvuser.FirstName `
@@ -51,7 +44,6 @@ foreach($csvuser in $csvusers) {
         Add-ADGroupMember -Identity $group -Members $username
         Write-Host "User $username added to group: $group" 
       }
-
      }
       catch {
         Write-Warning "Error when creating a user $username" 
